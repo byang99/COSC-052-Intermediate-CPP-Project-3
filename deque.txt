@@ -1,0 +1,26 @@
+template <typename T>
+class Deque {
+
+  public:
+    Deque();
+    Deque( const Deque<T>& ) throw ( bad_alloc );
+    bool empty() const;
+    unsigned size() const;
+    void insertFront( const T& ) throw ( bad_alloc );
+    void insertBack( const T& ) throw ( bad_alloc );
+    T removeFront() throw ( NoSuchObject );
+    T& front() const throw ( NoSuchObject );
+    T removeBack() throw ( NoSuchObject );
+    T& back() const throw ( NoSuchObject );
+    const Deque<T> &operator=( const Deque<T>& ) throw ( bad_alloc );
+    void clear();
+    ~Deque();
+
+  private:
+    unsigned sz;
+    DLNode<T>* frontPtr;
+    DLNode<T>* backPtr;
+    
+    void initialize();
+
+}; // Deque class

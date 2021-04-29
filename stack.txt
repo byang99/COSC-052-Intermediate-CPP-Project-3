@@ -1,0 +1,39 @@
+template <typename T>
+class Stack
+{
+  public:
+    Stack();
+    Stack( const Stack<T>& ) throw ( bad_alloc );
+    bool empty() const;
+    unsigned size() const;
+    T& top() const throw ( NoSuchObject );
+    T pop() throw ( NoSuchObject );
+    void push( const T& ) throw ( bad_alloc );
+    const Stack<T>& operator=( const Stack<T>& ) throw ( bad_alloc );
+    void printInternal() const;
+    void clear();
+    ~Stack();
+
+  private:
+    unsigned sz;
+    Node<T>* topPtr;
+
+    void initialize();
+
+}; // Stack<T> class
+
+template <typename T>
+void Stack<T>::printInternal() const
+{
+  Node<T>* current = topPtr;
+  int i = 0;
+  cout << "top: " << topPtr << endl;
+  while ( current != 0 ) {
+    cout << "Node " << i << endl;
+    cout << "  address: " << current << endl;
+    cout << "  object: " << current->getObject() << endl;
+    cout << "  next: " << current->getNextPtr() << endl;
+    current = current->getNextPtr();
+    i++;
+  } // while
+} // Stack<T>::printInternal
